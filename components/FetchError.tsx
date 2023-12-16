@@ -6,6 +6,7 @@ const FetchError: React.FC = () => {
         role="alert"
       >
         <h3 className="font-bold">Error while fetching data.</h3>
+
         <span className="block sm:inline">
           Something seriously bad happened.
         </span>

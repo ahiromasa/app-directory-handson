@@ -27,6 +27,7 @@ const NoteItem: React.FC<Props> = ({ item }) => {
           {item.title}
         </h3>
       </Link>
+
       <p className="text-gray-500 break-all">{item.body}</p>
     </div>
   );
