@@ -9,7 +9,7 @@ type Props = {
 const NoteItem: React.FC<Props> = ({ item }) => {
   return (
     <div className="bg-gray-100 rounded-lg relative p-5 pt-8">
-      <Link href={`/notes`} className="absolute -top-4 left-4">
+      <Link href={`/notes/${item.id}/edit`} className="absolute -top-4 left-4">
         <span className="w-8 h-8 inline-flex justify-center items-center bg-pink-500 hover:bg-pink-700 text-white rounded-full">
           <svg
             xmlns="http://www.w3.org/2000/svg"

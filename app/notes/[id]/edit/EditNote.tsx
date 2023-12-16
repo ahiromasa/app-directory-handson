@@ -2,31 +2,34 @@
 
 import Link from "next/link";
 import { useRouter } from "next/navigation";
-import { useCallback, useState } from "react";
-import { z } from "zod";
+import React, { useCallback, useState } from "react";
+import { Note } from "../../type";
 
-const NewNote: React.FC = () => {
+type Props = {
+  item: Note;
+};
+
+const EditNote: React.FC<Props> = ({ item }) => {
   const router = useRouter();
 
-  const [title, setTitle] = useState("");
-  const [body, setBody] = useState("");
+  const [title, setTitle] = useState(item.title);
+  const [body, setBody] = useState(item.body);
 
-  const createNote = useCallback(async () => {
-    const response = await fetch("/api/notes", {
-      method: "POST",
+  const updateNote = useCallback(async () => {
+    const response = await fetch(`/api/notes/${item.id}`, {
+      method: "PUT",
       body: JSON.stringify({ title, body }),
       headers: { "Content-Type": "application/json" },
     });
 
     if (response.ok) {
-      const id = z.number().parse(await response.json());
-      alert("Note created");
-      router.push(`/notes/${id}`);
+      alert("Note updated");
+      router.push(`/notes/${item.id}`);
       router.refresh();
     } else {
-      alert("Note failed to create");
+      alert("Note failed to update");
     }
-  }, [router, body, title]);
+  }, [item.id, router, body, title]);
 
   return (
     <div className="flex flex-col bg-gray-100 rounded-lg relative p-5 gap-2.5">
@@ -62,20 +65,20 @@ const NewNote: React.FC = () => {
 
       <div className="flex flex-col sm:flex-row sm:justify-end gap-2.5">
         <Link
-          href={`/notes`}
+          href={`/notes/${item.id}`}
           className="inline-block bg-gray-200 hover:bg-gray-300 focus-visible:ring ring-pink-300 text-gray-500 active:text-gray-700 text-sm md:text-base font-semibold text-center rounded-lg outline-none transition duration-100 px-8 py-2"
         >
           Cancel
         </Link>
         <button
-          onClick={createNote}
+          onClick={updateNote}
           className="inline-block bg-pink-500 hover:bg-pink-600 active:bg-pink-700 focus-visible:ring ring-pink-300 text-white text-sm md:text-base font-semibold text-center rounded-lg outline-none transition duration-100 px-8 py-2"
         >
-          Create
+          Save
         </button>
       </div>
     </div>
   );
 };
 
-export default NewNote;
+export default EditNote;
