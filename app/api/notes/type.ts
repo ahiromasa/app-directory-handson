@@ -10,7 +10,7 @@ export const zNote = z.object({
 
 export const zNotes = z.array(zNote);
 
-export const UpsertNote = z.object({
+export const zUpsertNote = z.object({
   title: z.string(),
   body: z.string(),
 });
