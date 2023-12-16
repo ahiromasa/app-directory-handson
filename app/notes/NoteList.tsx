@@ -2,7 +2,7 @@
 
 import React from "react";
 import useSWR from "swr";
-import { Note, zNotes } from "../api/notes/type";
+import { Note, zNotes } from "./type";
 import NoteItem from "./NoteItem";
 
 type Props = {

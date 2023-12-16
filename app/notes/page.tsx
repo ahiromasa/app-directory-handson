@@ -5,8 +5,8 @@ import { apiUrl } from "@/constants/api";
 import { Metadata } from "next";
 import Link from "next/link";
 import { Suspense } from "react";
-import { zNotes } from "../api/notes/type";
 import NoteList from "./NoteList";
+import { zNotes } from "./type";
 
 export const revalidate = 0;
 

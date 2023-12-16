@@ -1,6 +1,6 @@
 import { prisma } from "@/globals/db";
 import { NextRequest, NextResponse } from "next/server";
-import { zUpsertNote } from "./type";
+import { zUpsertNote } from "../../notes/type";
 
 export const dynamic = "force-dynamic";
 
